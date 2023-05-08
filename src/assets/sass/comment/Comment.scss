@@ -1,0 +1,183 @@
+.comment-box {
+    display: flex;
+    flex: 0 1;
+    flex-direction: column;
+    padding: 16px;
+    gap: 10px;
+
+    .comment {
+        display: flex;
+        flex: 0 1;
+        gap: 10px;
+
+        .comment-user {
+            .user-img {
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+            }
+        }
+
+        .comment-cnt {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e3e3e3;
+            gap: 10px;
+            border-radius: 5px;
+            flex: 1;
+            padding: 10px;
+    
+            .comment-hdr {
+                .user-name {
+                    font: {
+                        size: 14px;
+                    }
+                }
+            }
+    
+            .comment-body {
+                flex: 1;
+    
+                .comment-input {
+                    padding: 8px 16px;
+                    width: 100%;
+                    outline: none;
+                    border: 0;
+                    resize: none;
+                    border: 1px solid rgba(0,0,0,.38);
+                    border-radius: 4px;
+
+                    font: {
+                        size: 12px;
+                    }
+
+                    min: {
+                        height: 40px;
+                    }
+
+                    max: {
+                        height: 66px;
+                    }
+
+                    overflow: {
+                        y: auto;
+                    }
+
+                    &:empty:before {
+                        content: attr(placeholder);
+                        color: rgba(0,0,0,.6);
+                        letter-spacing: .1px;
+                        cursor: text;
+                        
+                        font: {
+                            size: 14px;
+                            family: 'Lato-Bold';
+                        }
+                    }
+                }
+
+                &.comment-body-read {
+                    .comment-txt {
+                        cursor: pointer;
+
+                        font: {
+                            size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .comment-action {
+        display: flex;
+
+        &.comment-action-edit {
+            justify-content: flex-end;
+        }
+
+        .comment-action-list {
+            display: flex;
+            flex: 1;
+            gap: 16px;
+            justify-content: space-between;
+
+            padding: {
+                left: 40px;
+            }
+
+            .comment-act-upvote {
+                display: flex;
+                gap: 2px;
+                align-items: center;
+                justify-content: center;
+
+                .MuiSvgIcon-root {
+                    cursor: pointer;
+                    color: #7e7a7a;
+    
+                    font: {
+                        size: 30px;
+                    }
+                }
+
+                .upvote-count {
+                    color: #7e7a7a;
+
+                    font: {
+                        size: 12px;
+                    }
+                }
+
+                .reply-bnt {
+                    text-transform: initial;
+
+                    margin: {
+                        left: 10px;
+                    }
+
+                    .MuiButton-startIcon {
+                        .MuiSvgIcon-root {
+                            font: {
+                                size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .comment-act-buttons {
+                display: flex;
+                gap: 16px;
+            }
+        }
+    }
+
+    &.comment-box-reply {
+        padding: {
+            left: 40px;
+        }
+    }
+}
+
+.comment-list-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: {
+        left: 16px;
+        right: 16px;
+    }
+
+    .comment-box:not(.comment-box-reply) {
+        padding: 0;
+    }
+
+    .comment-list-item {
+        padding: {
+            left: 40px;
+            right: 0px;
+        }
+    }
+}
