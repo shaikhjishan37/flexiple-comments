@@ -8,7 +8,6 @@ RUN yarn build
 RUN yarn add express cors 
 RUN yarn add elastic-apm-node
 
-COPY /build /app
 COPY server.js /app
 COPY entrypoint.sh /app
 
