@@ -1,0 +1,9 @@
+{
+    "URLs": {
+        "GET_COMMENTS": "data/Comments.json"
+    },
+    "loggedInUser": {
+        "name": "Jishan Shaikh",
+        "profilePhoto": "/images/user.png"
+    }
+}
