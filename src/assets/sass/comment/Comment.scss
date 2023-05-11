@@ -26,11 +26,44 @@
             border-radius: 5px;
             flex: 1;
             padding: 10px;
-    
+
             .comment-hdr {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
                 .user-name {
                     font: {
                         size: 14px;
+                    }
+                }
+
+                .MuiSvgIcon-root {
+                    cursor: pointer;
+                    transform: translateY(2px);
+                    display: none;
+                    color: #919191;
+                    transition: all 0.7s ease;
+
+                    font: {
+                        size: 16px;
+                    }
+
+                    &:hover {
+                        border-radius: 50%;
+                        padding: 2px;
+
+                        background: {
+                            color: #cdcdcd;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                .comment-hdr {
+                    .MuiSvgIcon-root {
+                        display: block;
                     }
                 }
             }
@@ -61,6 +94,10 @@
 
                     overflow: {
                         y: auto;
+                    }
+
+                    background: {
+                        color: #ffffff;
                     }
 
                     &:empty:before {
@@ -131,6 +168,10 @@
 
                 .reply-bnt {
                     text-transform: initial;
+
+                    font: {
+                        size: 12px;
+                    }
 
                     margin: {
                         left: 10px;

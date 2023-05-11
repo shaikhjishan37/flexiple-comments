@@ -47,3 +47,10 @@ export const replyComment = (replyOnComment, comment) => {
         comment
     }
 }
+
+export const deleteComment = comment => {
+    return {
+        type: COMMENT_CONSTANT.DELETE_COMMENT,
+        comment
+    }
+}

@@ -24,6 +24,11 @@ const CommentReducer = (state = initialState, action) => {
                 ...state,
                 comments: updateCommentData(state.comments, action.comment)
             }
+        case COMMENT_CONSTANT.DELETE_COMMENT:
+            return {
+                ...state,
+                comments: deleteCommentData(state.comments, action.comment)
+            }
         default:
             return state;
     }
@@ -71,6 +76,26 @@ const updateCommentData = (comments, comment) => {
     }
 
     return updateComments;
+}
+
+const deleteCommentData = (comments, comment) => {
+    let deleteComments = [...comments];
+
+    for ( const index in deleteComments ) {
+        const deleteComment = deleteComments[index];
+        
+        if ( deleteComment.id === comment.id ) {
+            deleteComments = deleteComments.filter( dc => dc.id !== comment.id );
+            break;
+        } else if ( deleteComment.children ) {
+            deleteComments[index] = {
+                ...deleteComment,
+                children: deleteCommentData(deleteComment.children, comment)
+            }
+        }
+    }
+
+    return deleteComments;
 }
 
 export default CommentReducer;

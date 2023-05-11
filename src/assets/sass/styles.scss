@@ -304,11 +304,36 @@
 			y: auto;
 		}
 
+		> .comment-box {
+			border: {
+				bottom: 1px solid #e3e3e3;
+			}
+		}
+
 		> .comment-list-item {
-			height: calc(100% - 170px);
+			height: calc(100% - 186px);
 
 			overflow: {
 				y: auto;
+			}
+
+			padding: {
+				top: 16px;
+			}
+
+			.comment-cnt {
+				background: {
+					color: #e3e3e3;
+				}
+			}
+
+			.comment-box {
+				gap: 4px;
+			}
+
+			&:empty::before {
+				content: 'You can start by adding post from top panel!';
+				color: #a3a3a3;
 			}
 		}
 	}

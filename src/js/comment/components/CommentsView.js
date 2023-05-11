@@ -47,7 +47,7 @@ class CommentsView extends React.Component {
     }
 
     getCommentsJSX(comments) {
-        const { upvoteComment, updateComment } = this.props;
+        const { upvoteComment, updateComment, deleteComment } = this.props;
 
         return (
             <div className='comment-list-item'>
@@ -65,6 +65,7 @@ class CommentsView extends React.Component {
                                     } }
                                     upvoteComment={ upvoteComment }
                                     updateComment={ updateComment } 
+                                    deleteComment={ deleteComment }
                                 />
                                 {
                                     comment.showReplyBox && this.getCreateCommentJSX(comment)

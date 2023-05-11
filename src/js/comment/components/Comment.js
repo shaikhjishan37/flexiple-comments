@@ -2,6 +2,12 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import './../../../assets/sass/comment/Comment.scss';
 
 class Comment extends React.Component {
@@ -11,8 +17,10 @@ class Comment extends React.Component {
 		this.state = {
             commentTxt: '',
             initialEditComment: '',
-            commentEditMode: false
+            commentEditMode: false,
+            showDeleteConfirmation: false
         };
+
         this.commentRef = React.createRef();
 
         this.onCommentChange = this.onCommentChange.bind(this);
@@ -22,11 +30,14 @@ class Comment extends React.Component {
         this.cancelUpdate = this.cancelUpdate.bind(this);
         this.replyComment = this.replyComment.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
+        this.showDeleteBox = this.showDeleteBox.bind(this);
+        this.closeDeleteBox = this.closeDeleteBox.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
 	}
 
 	render() {
         const { user, comment, editMode, upvoteComment, replyOnComment } = this.props;
-        const { commentTxt, commentEditMode, initialEditComment } = this.state;
+        const { commentTxt, commentEditMode, initialEditComment, showDeleteConfirmation } = this.state;
         const isEditMode = editMode || commentEditMode;
         const commentEditProps = {
             placeholder: 'Enter comment to post...',
@@ -50,6 +61,10 @@ class Comment extends React.Component {
                     <div className='comment-cnt'>
                         <div className='comment-hdr'>
                             <span className='user-name bold'>{ user.name }</span>
+                            {
+                                comment.id &&
+                                    <DeleteIcon onClick={ this.showDeleteBox } />
+                            }
                         </div>
                         <div className={`comment-body ${ editMode ? '' : 'comment-body-read' }`} >
                             {
@@ -103,9 +118,41 @@ class Comment extends React.Component {
                             </div>
                     }
                 </div>
+                {
+                    <Dialog open={ showDeleteConfirmation } onClose={ this.closeDeleteBox }>
+                        <DialogTitle >
+                            Are your sure about deleting post?
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                Deleting a post will remove it permanently along with any replies added on it.
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={ this.closeDeleteBox }>CANCEL</Button>
+                            <Button onClick={ this.deleteComment } variant='contained'>DELETE</Button>
+                        </DialogActions>
+                    </Dialog>
+                }
             </div>
 		)
 	}
+
+    showDeleteBox() {
+        this.setState({
+            showDeleteConfirmation: true
+        })
+    }
+
+    closeDeleteBox() {
+        this.setState({
+            showDeleteConfirmation: false
+        })
+    }
+
+    deleteComment() {
+        this.props.deleteComment( this.props.comment );
+    }
 
     onCommentChange(event) {
         this.setState({

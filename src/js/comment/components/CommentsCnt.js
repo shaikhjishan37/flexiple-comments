@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CommentsView from './CommentsView';
-import { loadComments, createComment, upvoteComment, updateComment } from '../actions/CommentsActions';
+import { loadComments, createComment, upvoteComment, updateComment, deleteComment } from '../actions/CommentsActions';
 
 const mapStateToProps = state => {
     const { comments } = state.comments;
@@ -23,6 +23,9 @@ const mapDispatchToProps = dispatch => {
         },
         updateComment: comment => {
             dispatch( updateComment(comment) )
+        },
+        deleteComment: comment => {
+            dispatch( deleteComment(comment) )
         }
     }
 }
